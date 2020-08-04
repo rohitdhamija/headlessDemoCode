@@ -1,0 +1,23 @@
+<html>
+    <head>
+        <h1>Oracle Digital Assistant - Web channel Headless Demo</h1>
+        <link rel="stylesheet" href="css/chatcontainer.css">
+        <script src="scripts/settings.js"></script>
+        <script src="scripts/web-sdk.js" onload="initSdk('Bots')"></script>     
+  
+        
+    </head>
+    <body>
+        <h3><p id="networkStatus"></p></h3>
+        
+        <div id="myDIV" class="header">
+            <h2>Hi! This is GERTY, your personal digital assistant</h2>
+            <input type="text" id="myInput" placeholder="Enter your query here and hit Add button...">
+            <span onclick="newElement()" class="addBtn">Add</span>
+          </div>
+          
+          <ul id="myUL"></ul>
+           
+          </ul>
+    </body>
+</html>
