@@ -126,6 +126,9 @@ const initSdk = (name) => {
                 console.log('Audio response is turned off.');
             }
         })
+
+
+
         // Connect to the ODA
         Bots.connect();
 
@@ -134,6 +137,30 @@ const initSdk = (name) => {
     }, 0);
 };
 
+function startRecording()
+{
+    console.log("recording started..");
+    Bots.startVoiceRecording((data) => {
+        let recognizedText = '';
+        if (data && (data.event === 'finalResult' || data.event === 'partialResult')) {
+            if (data.nbest && data.nbest.length > 0) {
+                
+                recognizedText = data.nbest[0].utterance;
+                console.log("recognized text: "+ recognizedText);
+                document.getElementById("myInput").value = recognizedText;
+                sendMessage(recognizedText);
+            }
+        }
+    }, (status, error) => {
+        if (status === WebSocket.OPEN) {
+            // Connection established
+            console.log("connection established.");
+        } else if (status === WebSocket.CLOSED) {
+            // Connection closed
+            console.log("connection closed.");
+        }
+    })
+}
 function isBotconnected() {
     console.log("check if bot is connected or not");
     return Bots.isConnected(); // false
@@ -155,7 +182,7 @@ function newElement() {
         alert("Please ensure the bot is connnected before sending the message..");
         return;
     }
-
+    
     var inputValue = document.getElementById("myInput").value;
     updateMessageinList(inputValue)
     sendMessage(inputValue);
@@ -173,3 +200,4 @@ function updateMessageinList(inputValue) {
     }
     document.getElementById("myInput").value = "";
 }
+
