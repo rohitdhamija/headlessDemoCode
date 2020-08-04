@@ -66,21 +66,21 @@ const initSdk = (name) => {
         Bots.on(WebSDK.EVENT.CLICK_VOICE_TOGGLE, () => {
             console.log('voice is toggled');
         });
-                
+
         Bots.on(WebSDK.EVENT.DESTROY, () => {
             console.log('destroy is called');
         });
-                
+
         Bots.on(WebSDK.EVENT.MESSAGE, (message) => {
             console.log('a message was added to the conversation', message);
         });
-                
+
         Bots.on(WebSDK.EVENT.MESSAGE_RECEIVED, (message) => {
             var msg = message.messagePayload.text;
             console.log('the user received a message', msg);
             updateMessageinList(msg);
         });
-                
+
         Bots.on(WebSDK.EVENT.MESSAGE_SENT, (message) => {
             console.log('the user sent a message', message);
         });
@@ -100,26 +100,26 @@ const initSdk = (name) => {
                     status = 'Closed';
                     break;
             }
-           
-            console.log('Network status:'+ status);
+
+            console.log('Network status:' + status);
             networkStatusUpdate(status);
         });
 
- 
+
         Bots.on(WebSDK.EVENT.READY, () => {
             console.log('the init has completed!');
             networkStatusUpdate("Connnected");
         });
-  
+
         Bots.on(WebSDK.EVENT.UNREAD, (unreadCount) => {
             console.log('the number of unread messages was updated', unreadCount);
         });
-  
+
         Bots.on(WebSDK.EVENT.WIDGET_CLOSED, () => {
             console.log('Widget is closed');
         });
-                 
-        Bots.on(WebSDK.EVENT.CLICK_AUDIO_RESPONSE_TOGGLE, function(status) {
+
+        Bots.on(WebSDK.EVENT.CLICK_AUDIO_RESPONSE_TOGGLE, function (status) {
             if (status === true) {
                 console.log('Audio response is turned on.');
             } else {
@@ -134,46 +134,42 @@ const initSdk = (name) => {
     }, 0);
 };
 
-function isBotconnected()
-{
+function isBotconnected() {
     console.log("check if bot is connected or not");
     return Bots.isConnected(); // false
 }
 
 function sendMessage(msg) {
-    console.log("msg:"+msg);
+    console.log("msg:" + msg);
     Bots.sendMessage(msg);
-  }
+}
 
-  function networkStatusUpdate(status) {
+function networkStatusUpdate(status) {
     console.log("networkStatusUpdate called");
     document.getElementById("networkStatus").innerHTML = "Network status: " + status;
-  } 
+}
 
-  // Create a new list item when clicking on the "Add" button
+// Create a new list item when clicking on the "Add" button
 function newElement() {
-    if(isBotconnected() == false)
-        {
-            alert("Please ensure the bot is connnected before sending the message..");
-            return;
-        }
-   
-    var inputValue = document.getElementById("myInput").value;         
+    if (isBotconnected() == false) {
+        alert("Please ensure the bot is connnected before sending the message..");
+        return;
+    }
+
+    var inputValue = document.getElementById("myInput").value;
     updateMessageinList(inputValue)
     sendMessage(inputValue);
- 
-  }
 
-  function updateMessageinList(inputValue)
-  {
+}
+
+function updateMessageinList(inputValue) {
     var li = document.createElement("li");
     var t = document.createTextNode(inputValue);
     li.appendChild(t);
     if (inputValue === '') {
-      alert("You must write something!");
+        alert("You must write something!");
     } else {
-      document.getElementById("myUL").appendChild(li);
+        document.getElementById("myUL").appendChild(li);
     }
     document.getElementById("myInput").value = "";
-    
-  }
+}
