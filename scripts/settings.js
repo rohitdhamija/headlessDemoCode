@@ -63,8 +63,13 @@ const initSdk = (name) => {
         Bots.on(WebSDK.EVENT.CLICK_ERASE, () => {
             console.log('Conversation history is erased.');
         });
-        Bots.on(WebSDK.EVENT.CLICK_VOICE_TOGGLE, () => {
-            console.log('voice is toggled');
+        //       Bots.on(WebSDK.EVENT.CLICK_VOICE_TOGGLE, (status) => {
+        Bots.on('click:voicetoggle', function (status) {
+            if (status === true) {
+                console.log('Voice recording is started.');
+            } else {
+                console.log('Voice recording is stopped.');
+            }
         });
 
         Bots.on(WebSDK.EVENT.DESTROY, () => {
@@ -137,8 +142,7 @@ const initSdk = (name) => {
     }, 0);
 };
 
-function resetRecording()
-{
+function resetRecording() {
     Bots.stopVoiceRecording()
     $('#recButton').removeClass("Rec");
     $('#recButton').addClass("notRec");
@@ -154,10 +158,10 @@ function startRecording() {
                 console.log("recognized text: " + recognizedText);
                 document.getElementById("myInput").value = recognizedText;
                 if (data.event === 'finalResult') {
-                    
+
                     console.log(data.event);
                     resetRecording();
-                    
+
                     newElement();
                 }
             }
