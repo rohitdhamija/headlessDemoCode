@@ -36,8 +36,13 @@
   }
   
  
-  
-  
+  .headerAudio {
+    background-color:#393f4d;
+
+    color: white;
+ 
+  }
+
   
   /* Style the header */
   .header {

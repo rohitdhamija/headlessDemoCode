@@ -63,8 +63,7 @@ const initSdk = (name) => {
         Bots.on(WebSDK.EVENT.CLICK_ERASE, () => {
             console.log('Conversation history is erased.');
         });
-        //       Bots.on(WebSDK.EVENT.CLICK_VOICE_TOGGLE, (status) => {
-        Bots.on('click:voicetoggle', function (status) {
+       Bots.on(WebSDK.EVENT.CLICK_VOICE_TOGGLE, (status) => {
             if (status === true) {
                 console.log('Voice recording is started.');
             } else {
@@ -84,6 +83,8 @@ const initSdk = (name) => {
             var msg = message.messagePayload.text;
             console.log('the user received a message', msg);
             updateMessageinList(msg);
+            audioForUtterance(msg);
+            
         });
 
         Bots.on(WebSDK.EVENT.MESSAGE_SENT, (message) => {
@@ -216,3 +217,13 @@ function updateMessageinList(inputValue) {
     document.getElementById("myInput").value = "";
 }
 
+function audioForUtterance(msg) {
+    var checkBox = document.getElementById("checkToEnableAudio");
+    
+    if (checkBox.checked == true){
+        console.log("sound checkbox checked");
+      speakUtterance(msg);
+    } else {
+       console.log("sound checkbox uncheck");
+    }
+  }
