@@ -137,18 +137,29 @@ const initSdk = (name) => {
     }, 0);
 };
 
-function startRecording()
+function resetRecording()
 {
+    Bots.stopVoiceRecording()
+    $('#recButton').removeClass("Rec");
+    $('#recButton').addClass("notRec");
+}
+function startRecording() {
     console.log("recording started..");
     Bots.startVoiceRecording((data) => {
         let recognizedText = '';
         if (data && (data.event === 'finalResult' || data.event === 'partialResult')) {
             if (data.nbest && data.nbest.length > 0) {
-                
+
                 recognizedText = data.nbest[0].utterance;
-                console.log("recognized text: "+ recognizedText);
+                console.log("recognized text: " + recognizedText);
                 document.getElementById("myInput").value = recognizedText;
-                sendMessage(recognizedText);
+                if (data.event === 'finalResult') {
+                    
+                    console.log(data.event);
+                    resetRecording();
+                    
+                    newElement();
+                }
             }
         }
     }, (status, error) => {
@@ -182,7 +193,7 @@ function newElement() {
         alert("Please ensure the bot is connnected before sending the message..");
         return;
     }
-    
+
     var inputValue = document.getElementById("myInput").value;
     updateMessageinList(inputValue)
     sendMessage(inputValue);
