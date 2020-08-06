@@ -202,7 +202,7 @@ function newElement() {
     var inputValue = document.getElementById("myInput").value;
     updateMessageinList(inputValue)
     sendMessage(inputValue);
-
+    
 }
 
 function updateMessageinList(inputValue) {
@@ -227,3 +227,16 @@ function audioForUtterance(msg) {
        console.log("sound checkbox uncheck");
     }
   }
+  function getAutoComplete(utterance)
+  {
+  Bots.getSuggestions(utterance)
+    .then((suggestions) => {
+        const suggestionString = suggestions.toString();
+        console.log('The suggestions are: ', suggestionString);
+        
+        document.getElementById("autoSuggestionId").value = suggestionString;
+    })
+    .catch((reason) => {
+        console.log('Suggestion request failed', reason);
+    });
+}

@@ -40,14 +40,15 @@
     background-color:#393f4d;
 
     color: white;
- 
+    text-align: left;
   }
+
 
   
   /* Style the header */
   .header {
     background-color:#393f4d;
-    padding: 30px 40px;
+    padding: 30px 20px;
     color: white;
     text-align: center;
   }
@@ -87,3 +88,5 @@
   .addBtn:hover {
     background-color: #bbb;
   }
+
+ 
