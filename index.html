@@ -1,10 +1,10 @@
 <html>
-
+    <title>Web Channel Headless Demo</title>
 <head>
-    <h1>Oracle Digital Assistant - Web channel Headless Demo</h1>
+    <h1>Oracle Digital Assistant - Web Channel Headless Demo</h1>
     <link rel="stylesheet" href="css/chatcontainer.css">
     <link rel="stylesheet" href="css/recordbutton.css">
-
+    <link rel="stylesheet" href="css/checkboxswitch.css">
     <script src="scripts/settings.js"></script>
     <script src="scripts/web-sdk.js" onload="initSdk('Bots')"></script>
     <script src="scripts/speakutterance.js"></script>
@@ -18,15 +18,19 @@
     </h3>
 
     <div id="myDIV" class="header">
-        <h2 style="color: #fbaf08;">Hi, I am GERTY - your personal digital assistant!</h2>
+        <h2 style="color: #fbaf08;">Hi, I am GERTY - your personal digital assistant</h2>
 
-        <input type="text" id="myInput" placeholder="Enter your query here and hit Send button...">
+        <input type="text" id="myInput" placeholder="Enter your query here and click Send">
 
         <span onclick="newElement()" class="addBtn">Send</span>
-        
-        <h3 style="color: whitesmoke;">Alternatively, hit the record button below:</h3>
+
+        <h3 style="color: #fbaf08; margin-top: 80px;" >Auto-Complete Suggestions:</h3>
+        <textarea id="autoSuggestionId" rows="4" cols="128" 
+        readonly 
+        placeholder="You will start viewing auto-complete suggestions as soon as you start entering your query."></textarea>      
+        <h3 style="color: #fbaf08;">Turn on the microphone to speak your questions:</h3>
         <button id="recButton"></button>
-  
+
 
         <script>
             var inputValue = document.getElementById("myInput");
@@ -37,11 +41,10 @@
                         event.preventDefault();
                         newElement();
                     }
-                    if (event.keyCode === 32 || event.key === ' ')
-                    {
+                    if (event.keyCode === 32 || event.key === ' ') {
                         var inputValueTxt = inputValue.value;
-                        console.log("passing keyword for autosuggestion"+ inputValueTxt);
-                        
+                        console.log("passing keyword for autosuggestion" + inputValueTxt);
+
                         getAutoComplete(inputValueTxt);
                     }
                 });
@@ -51,19 +54,22 @@
         <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
         <script src="scripts/recordbutton.js"></script>
 
+
+        
+        <h3 style="color: #fbaf08;">To enable the audio utterance of skill response, turn on this switch:</h3>
+
+        <label class="switch">
+           
+            <input type="checkbox"  id="checkToEnableAudio" onclick="audioForUtterance()">
+            <span class="slider round"></span>
+        </label>
+
+        
+
+
     </div>
-    <div id="audiodiv" class="header">
-    <label for="checkToEnableAudio">Enable audio utterance of skill responses</label>
-  
-    <input type="checkbox" id="checkToEnableAudio" onclick="audioForUtterance()" style="zoom:2.5;">  
-</div>
-
-<div id="autoSuggestiondiv" class="header">
-    <h3 style="color: #fbaf08;">Auto Suggestion</h3>
-<textarea id="autoSuggestionId" name="autoSuggestion" rows="4" cols="130"></textarea>
-</div>
-    <ul id="myUL"></ul>
-
+    <ul id="myUL">
+        <li><i>Your chat will appear here..</i></li>
     </ul>
 </body>
 

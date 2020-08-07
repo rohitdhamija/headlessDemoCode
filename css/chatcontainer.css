@@ -18,11 +18,7 @@
     font-size: 18px;
     transition: 0.2s;
   
-    /* make the list items unselectable */
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -ms-user-select: none;
-    user-select: none;
+
   }
   
   /* Set all odd list items to a different color (zebra-stripes) */
@@ -35,22 +31,12 @@
     background: #ddd;
   }
   
- 
-  .headerAudio {
-    background-color:#393f4d;
-
-    color: white;
-    text-align: left;
-  }
-
-
-  
   /* Style the header */
   .header {
     background-color:#393f4d;
-    padding: 30px 20px;
+    padding: 10px 20px;
     color: white;
-    text-align: center;
+    text-align: left;
   }
   
   /* Clear floats after the header */
@@ -61,7 +47,7 @@
   }
   
   /* Style the input */
-  input {
+  #myInput {
     margin: 0;
     border: none;
     border-radius: 0;
@@ -69,6 +55,7 @@
     padding: 10px;
     float: left;
     font-size: 16px;
+    
   }
   
   /* Style the "Add" button */

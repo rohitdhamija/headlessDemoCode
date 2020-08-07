@@ -207,8 +207,9 @@ function newElement() {
 
 function updateMessageinList(inputValue) {
     var li = document.createElement("li");
-    var t = document.createTextNode(inputValue);
-    li.appendChild(t);
+    //var t = document.createTextNode(inputValue);
+    li.innerHTML = inputValue;
+    //li.appendChild(t);
     if (inputValue === '') {
         alert("You must write something!");
     } else {
