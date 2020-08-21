@@ -24,9 +24,9 @@ const initSdk = (name) => {
          * In client auth enabled mode, 'clientAuthEnabled: true' must be passed
          */
         let chatWidgetSettings = {
-            URI: 'pmdademo1-bots4saas.botmxp.ocp.oraclecloud.com',                               // ODA URI, only the hostname part should be passed, without the https://
+            URI: 'idcs-oda-fb709d9e213748618c97883008b0771a-d0.data.digitalassistant.oci.oc-test.com',                               // ODA URI, only the hostname part should be passed, without the https://
             clientAuthEnabled: isClientAuthEnabled,     // Enables client auth enabled mode of connection if set true
-            channelId: 'b15fa2db-2b25-40e0-aff4-25da8e925b63',                   // Channel ID, available in channel settings in ODA UI
+            channelId: 'f31e1cfb-7b9f-492e-92fc-07006923af48',                   // Channel ID, available in channel settings in ODA UI
             enableHeadless: true,
             enableAutocomplete: true,                   // Enables autocomplete suggestions on user input
             enableBotAudioResponse: true,               // Enables audio utterance of skill responses
